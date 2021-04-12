@@ -39,9 +39,26 @@ def add_attraction(destination, attraction):
 	
 	return attractions_for_destination
 
+#given where a user is going, and a list of their interests
+#recommend attractions they would like
+def find_attractions(destination, interests):
+	#get index of destination
+	destination_index = get_destination_index(destination)
+	#find corresponding list of attractions
+	attractions_in_city = attractions[destination_index]
+	#list to store available attractions that match interests
+	attractions_with_interest = []
+	for possible_attraction in attractions_in_city:
+		#retrieve attraction tags
+		attraction_tags = possible_attraction[1]
+		for interest in interests:
+			#check if interest matches tags
+			if interest in attraction_tags:
+				attractions_with_interest.append(possible_attraction[0])
+	return attractions_with_interest
 
 #update attractions for each destination
-add_attraction("Los Angeles, USA", ['Venice Beach', ['beach']])
+add_attraction("Los Angeles, USA", ["Venice Beach", ["beach"]])
 add_attraction("Paris, France", ["the Louvre", ["art", "museum"]])
 add_attraction("Paris, France", ["Arc de Triomphe", ["historical site", "monument"]])
 add_attraction("Shanghai, China", ["Yu Garden", ["garden", "historcical site"]])
@@ -52,4 +69,7 @@ add_attraction("São Paulo, Brazil", ["São Paulo Zoo", ["zoo"]])
 add_attraction("São Paulo, Brazil", ["Pátio do Colégio", ["historical site"]])
 add_attraction("Cairo, Egypt", ["Pyramids of Giza", ["monument", "historical site"]])
 add_attraction("Cairo, Egypt", ["Egyptian Museum", ["museum"]])
-print(attractions)
+
+#search for arts attractions in LA
+la_arts = find_attractions("Los Angeles, USA", ["art"])
+print(la_arts)
