@@ -1,0 +1,1 @@
+This is just a simple project to demonstrate proficiency of Python basics. It takes a user's name, travel destination, and their interests, and recommends things to do on their trip that they might like.
